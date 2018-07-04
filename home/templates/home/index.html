@@ -1,0 +1,237 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+    <meta charset="UTF-8">
+    <title>Client Survey</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+
+</head>
+
+<body>
+
+<div class="info">
+    <h1>Survey Portal</h1>
+    <span>
+    By
+    <a href="https://github.com/rizwanbutt314/">Rizwan Hameed</a>
+    <!--<div class="spoilers">-->
+      <!--An app created to score your nonprofit's fundraising technique.</a>-->
+    <!--</div>-->
+  </span>
+</div>
+
+
+
+<!-- Modal -info -->
+<div class="container">
+    <div id="modal-3" class="modal" data-modal-effect="slide-top">
+        <div class="modal-content">
+            <h2 class="fs-title">Survey Portal Details</h2>
+            <h3 class="fs-subtitle">Getting the most out of your data</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce convallis consectetur ligula. Morbi dapibus tellus a ipsum sollicitudin aliquet. Phasellus id est lacus. Pellentesque a elementum velit, a tempor nulla. Mauris mauris lectus, tincidunt et purus rhoncus, eleifend convallis turpis. Nunc ullamcorper bibendum diam, vitae tempus dolor hendrerit iaculis. Phasellus tellus elit, feugiat vel mi et, euismod varius augue. Nulla a porttitor sapien. Donec vestibulum ac nisl sed bibendum. Praesent neque ipsum, commodo eget venenatis vel, tempus sit amet ante. Curabitur vel odio eget urna dapibus imperdiet sit amet eget felis. Vestibulum eros velit, posuere a metus eget, aliquam euismod purus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+            <input type="button" name="next" class="next action-button modal-close" value="Got it!">
+        </div>
+    </div>
+</div>
+
+<form class="steps" id="survey-form" novalidate="">
+    <ul id="progressbar">
+        <li class="active">Client Information</li>
+        <li>Stage 1</li>
+        <li>Stage 2</li>
+    </ul>
+
+    <!-- USER INFORMATION FIELD SET -->
+    <fieldset>
+        <h2 class="fs-title">Client Information</h2>
+        <h3 class="fs-subtitle">We just need your name to begin survey</h3>
+        <!-- Begin What's Your First Name Field -->
+        <div class="hs_firstname field hs-form-field">
+
+            <label for="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983">Your Name? *</label>
+
+            <input id="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983" name="name" required="required" type="text" value="" placeholder="" data-rule-required="true" data-msg-required="Please provide your name" >
+            <span class="error1" style="display: none;">
+              <i class="error-log fa fa-exclamation-triangle"></i>
+          </span>
+        </div>
+        <!-- End What's Your First Name Field -->
+        <input type="button" data-page="1" name="next" class="next action-button" value="Next" />
+        <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3"><i class="question-log fa fa-question-circle"></i> What Is This?</div>
+    </fieldset>
+
+    <!-- Stage 1 -->
+    <fieldset>
+        <h2 class="fs-title">Is your Agency more <br>this or that?</h2>
+        <div class="content-container">
+            <!-- Begin Total Number of Donors in Year 1 Field -->
+            <div class="form-item webform-component webform-component-textfield hs_total_number_of_donors_in_year_1 field hs-form-field" id="webform-component-acquisition--amount-1">
+                <div class="left-container">
+                    <label class="radio inline">
+                        <p>City</p>
+                    </label>
+                </div>
+                <div class="center-container">
+                    <label class="radio inline">
+                        <input type="radio" name="cc" value="1" checked>
+                        <span></span>
+                    </label>
+                    <label class="radio inline">
+                        <input type="radio" name="cc" value="2">
+                        <span></span>
+                    </label>
+                    <label class="radio inline">
+                        <input type="radio" name="cc" value="3">
+                        <span></span>
+                    </label>
+                    <label class="radio inline">
+                        <input type="radio" name="cc" value="4">
+                        <span></span>
+                    </label>
+                </div>
+                <div class="right-container">
+                    <label class="radio inline">
+                        <p>Country</p>
+                    </label>
+                </div>
+
+            </div>
+            <!-- End Total Number of Donors in Year 1 Field -->
+            <!-- Begin Total Number of Donors in Year 1 Field -->
+            <div class="form-item webform-component webform-component-textfield hs_total_number_of_donors_in_year_1 field hs-form-field" id="webform-component-acquisition--amount-1">
+                <div class="left-container">
+                    <label class="radio inline">
+                        <p>Book Smart</p>
+                    </label>
+                </div>
+                <div class="center-container">
+                    <label class="radio inline">
+                        <input type="radio" name="bs" value="1" checked>
+                        <span></span>
+                    </label>
+                    <label class="radio inline">
+                        <input type="radio" name="bs" value="2">
+                        <span></span>
+                    </label>
+                    <label class="radio inline">
+                        <input type="radio" name="bs" value="3">
+                        <span></span>
+                    </label>
+                    <label class="radio inline">
+                        <input type="radio" name="bs" value="4">
+                        <span></span>
+                    </label>
+                </div>
+                <div class="right-container">
+                    <label class="radio inline">
+                        <p>Street Smart</p>
+                    </label>
+                </div>
+
+            </div>
+            <!-- End Total Number of Donors in Year 1 Field -->
+            <!-- Begin Total Number of Donors in Year 1 Field -->
+            <div class="form-item webform-component webform-component-textfield hs_total_number_of_donors_in_year_1 field hs-form-field" id="webform-component-acquisition--amount-1">
+                <div class="left-container">
+                    <label class="radio inline">
+                        <p>Formal</p>
+                    </label>
+                </div>
+                <div class="center-container">
+                    <label class="radio inline">
+                        <input type="radio" name="fc" value="1" checked>
+                        <span></span>
+                    </label>
+                    <label class="radio inline">
+                        <input type="radio" name="fc" value="2">
+                        <span></span>
+                    </label>
+                    <label class="radio inline">
+                        <input type="radio" name="fc" value="3">
+                        <span></span>
+                    </label>
+                    <label class="radio inline">
+                        <input type="radio" name="fc" value="4">
+                        <span></span>
+                    </label>
+                </div>
+                <div class="right-container">
+                    <label class="radio inline">
+                        <p>Casual</p>
+                    </label>
+                </div>
+
+            </div>
+            <!-- End Total Number of Donors in Year 1 Field -->
+            <!-- Begin Total Number of Donors in Year 1 Field -->
+            <div class="form-item webform-component webform-component-textfield hs_total_number_of_donors_in_year_1 field hs-form-field" id="webform-component-acquisition--amount-1">
+                <div class="left-container">
+                    <label class="radio inline">
+                        <p>Guitar</p>
+                    </label>
+                </div>
+                <div class="center-container">
+                    <label class="radio inline">
+                        <input type="radio" name="gd" value="1" checked>
+                        <span></span>
+                    </label>
+                    <label class="radio inline">
+                        <input type="radio" name="gd" value="2">
+                        <span></span>
+                    </label>
+                    <label class="radio inline">
+                        <input type="radio" name="gd" value="3">
+                        <span></span>
+                    </label>
+                    <label class="radio inline">
+                        <input type="radio" name="gd" value="4">
+                        <span></span>
+                    </label>
+                </div>
+                <div class="right-container">
+                    <label class="radio inline">
+                        <p>Drums</p>
+                    </label>
+                </div>
+
+            </div>
+            <!-- End Total Number of Donors in Year 1 Field -->
+        </div>
+        <input type="button" data-page="2" name="previous" class="previous action-button" value="Previous" />
+        <input type="button" data-page="2" name="next" class="next action-button" value="Next" />
+        <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3">What Is This?</div>
+    </fieldset>
+
+    <!-- Submit Stage -->
+    <fieldset>
+        <h2 class="fs-title">Submit Survey?</h2>
+        <input type="button" data-page="5" name="previous" class="previous action-button" value="Previous" />
+        <input id="submit" class="hs-button primary large action-button next" type="submit" value="Submit">
+        <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3">What Is This?</div>
+    </fieldset>
+
+    <fieldset>
+        <h2 class="fs-title">Survey Status</h2>
+        <h3 class="fs-subtitle" style="text-align: center">Thank you for the survey !</h3>
+        <input type="button" data-page="1" name="again" class="again action-button" value="Start Again" />
+        <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3">What Is This?</div>
+    </fieldset>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
+    <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js'></script>
+
+
+
+    <script  src="{% static 'js/index.js' %}"></script>
+
+
+
+
+</body>
+
+</html>

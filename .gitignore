@@ -1,0 +1,8 @@
+# Files
+*.pyc
+survey/db.sqlite3
+
+
+# Folders
+venv3/
+.idea/
