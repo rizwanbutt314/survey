@@ -3,6 +3,7 @@ from . import views
 
 app_name='home'
 urlpatterns = [
+    url(r'^$', views.HomeView.as_view(), name='index'),
     url(r'^client-survey$', views.IndexView.as_view(), name='client_index'),
     url(r'^agency-survey$', views.IndexView.as_view(), name='agency_index'),
 ]

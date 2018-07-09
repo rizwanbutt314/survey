@@ -11,6 +11,7 @@ body {
     font-family: montserrat, arial, verdana;
     width: 100%;
     overflow-x: hidden;
+    background: none;
 }
 /*form styles*/
 .steps {

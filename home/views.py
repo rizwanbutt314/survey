@@ -9,6 +9,12 @@ import json
 import time
 
 
+class HomeView(View):
+    template_name = 'home/main.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, {})
+
 class IndexView(View):
     template_name = 'home/index.html'
 
