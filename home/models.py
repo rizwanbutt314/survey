@@ -1,3 +1,7 @@
 from django.db import models
 
-# Create your models here.
+
+class AgencySurvey(models.Model):
+    name = models.CharField(max_length=60)
+    survey = models.TextField()
+

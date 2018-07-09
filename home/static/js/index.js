@@ -1,23 +1,23 @@
-$(document).ready(function() {
+$(document).ready(function () {
     var current_fs, next_fs, previous_fs;
     var left, opacity, scale;
     var animating;
     $(".steps").validate({
         errorClass: 'invalid',
         errorElement: 'span',
-        errorPlacement: function(error, element) {
+        errorPlacement: function (error, element) {
             error.insertAfter(element.next('span').children());
         },
-        highlight: function(element) {
+        highlight: function (element) {
             $(element).next('span').show();
         },
-        unhighlight: function(element) {
+        unhighlight: function (element) {
             $(element).next('span').hide();
         }
     });
 
     // Survey submission Event
-    $("#survey-form").submit(function(e){
+    $("#survey-form").submit(function (e) {
         e.preventDefault(e);
         var data = $(this).serializeArray();
 
@@ -33,22 +33,22 @@ $(document).ready(function() {
     });
 
     // Start Again Event
-    $(".again").click(function() {
+    $(".again").click(function () {
         window.location.href = '/';
     });
 
     // Next Event
-    $(".next").click(function() {
+    $(".next").click(function () {
         $(".steps").validate({
             errorClass: 'invalid',
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.insertAfter(element.next('span').children());
             },
-            highlight: function(element) {
+            highlight: function (element) {
                 $(element).next('span').show();
             },
-            unhighlight: function(element) {
+            unhighlight: function (element) {
                 $(element).next('span').hide();
             }
         });
@@ -59,36 +59,36 @@ $(document).ready(function() {
         animating = true;
         current_fs = $(this).parent();
         next_fs = $(this).parent().next();
-        if ($(this).val() != 'Submit'){
-        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-        next_fs.show();
-        current_fs.animate({
-            opacity: 0
-        }, {
-            step: function(now, mx) {
-                scale = 1 - (1 - now) * 0.2;
-                left = (now * 50) + "%";
-                opacity = 1 - now;
-                current_fs.css({
-                    'transform': 'scale(' + scale + ')'
-                });
-                next_fs.css({
-                    'left': left,
-                    'opacity': opacity
-                });
-            },
-            duration: 800,
-            complete: function() {
-                current_fs.hide();
-                animating = false;
-            },
-            easing: 'easeInOutExpo'
-        });
+        if ($(this).val() != 'Submit') {
+            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+            next_fs.show();
+            current_fs.animate({
+                opacity: 0
+            }, {
+                step: function (now, mx) {
+                    scale = 1 - (1 - now) * 0.2;
+                    left = (now * 50) + "%";
+                    opacity = 1 - now;
+                    current_fs.css({
+                        'transform': 'scale(' + scale + ')'
+                    });
+                    next_fs.css({
+                        'left': left,
+                        'opacity': opacity
+                    });
+                },
+                duration: 800,
+                complete: function () {
+                    current_fs.hide();
+                    animating = false;
+                },
+                easing: 'easeInOutExpo'
+            });
         }
     });
 
     // Previous Event
-    $(".previous").click(function() {
+    $(".previous").click(function () {
         if (animating) return false;
         animating = true;
         current_fs = $(this).parent();
@@ -98,7 +98,7 @@ $(document).ready(function() {
         current_fs.animate({
             opacity: 0
         }, {
-            step: function(now, mx) {
+            step: function (now, mx) {
                 scale = 0.8 + (1 - now) * 0.2;
                 left = ((1 - now) * 50) + "%";
                 opacity = 1 - now;
@@ -111,29 +111,40 @@ $(document).ready(function() {
                 });
             },
             duration: 800,
-            complete: function() {
+            complete: function () {
                 current_fs.hide();
                 animating = false;
             },
             easing: 'easeInOutExpo'
         });
     });
-    
-    
+
+    var barColor = function (score) {
+        if (score >= 80) {
+            return 'bg-success';
+        }
+        else if (score < 80 && score >= 50) {
+            return 'bg-warning';
+        }
+        else {
+            return 'bg-danger';
+        }
+    }
+
     var postSurvey = function (data, current_html) {
         $.ajax({
-            url: "/client-survey",
+            url: $(location).attr('pathname'),
             type: "post",
-            data: data ,
+            data: data,
             success: function (response) {
-
+                // Moving to Ending Popup
                 current_fs = $('#submit').parent();
                 next_fs = $('#submit').parent().next();
                 next_fs.show();
                 current_fs.animate({
                     opacity: 0
                 }, {
-                    step: function(now, mx) {
+                    step: function (now, mx) {
                         scale = 1 - (1 - now) * 0.2;
                         left = (now * 50) + "%";
                         opacity = 1 - now;
@@ -146,15 +157,34 @@ $(document).ready(function() {
                         });
                     },
                     duration: 800,
-                    complete: function() {
+                    complete: function () {
                         current_fs.hide();
                         animating = false;
                     },
                     easing: 'easeInOutExpo'
                 });
 
+                var _type = response.type;
+                var response_elm = $('.response');
+                if (_type == 'client') {
+                    var client_html = "";
+                    $.each(response.data, function (index, obj) {
+                        var br_clr = barColor(obj.score);
+                        var _score = parseFloat(obj.score);
+                        client_html += '<div style="margin-top:10px;"><span>Agency: ' + obj.name + '</span><div class="progress">\n' +
+                            '                <div class="progress-bar-animated progress-bar-striped ' + br_clr + '" role="progressbar" style="width: ' + _score + '%; font-weight: bold;text-align: center;color:white;" aria-valuenow="' + _score + '" aria-valuemin="0" aria-valuemax="100">' + _score + '%</div>\n' +
+                            '            </div></div>';
+                    });
+                    if (client_html) {
+                        response_elm.html(client_html);
+                    }
+                }
+                else if (_type = 'agency') {
+                    response_elm.html('<h3 class="fs-subtitle" style="text-align: center">Survey Submitted Successfully!</h3>')
+                }
+
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 console.log(textStatus, errorThrown);
             }
 

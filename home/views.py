@@ -3,6 +3,7 @@ from django.views import View
 from django.http import HttpResponse
 
 from survey.settings import CLIENT_URL, AGENCY_URL
+from . import utils
 
 import json
 import time
@@ -28,11 +29,11 @@ class IndexView(View):
         responseData = dict()
         time.sleep(2)
         if request.path == CLIENT_URL:
-            # TODO: compare client data with agencies
-            responseData = {'success': True, 'detail': 'Survey Result'}
+            comparison_data = utils.compare_client_questions(post_data)
+            responseData = {'success': True, 'type':'client', 'data': comparison_data}
         elif request.path == AGENCY_URL:
-            # TODO: Submit agency data
-            responseData = {'success': True, 'detail': 'Survey Submitted'}
+            utils.save_agency_survey(post_data)
+            responseData = {'success': True, 'type':'agency', 'detail': 'Survey Submitted'}
 
         dumpData = json.dumps(responseData)
         return HttpResponse(dumpData, content_type='application/json')
