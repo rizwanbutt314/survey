@@ -20,6 +20,16 @@ $(document).ready(function() {
     $("#survey-form").submit(function(e){
         e.preventDefault(e);
         var data = $(this).serializeArray();
+
+        // Disable action button
+        var submit_btn = $('#submit');
+        var prev_btn = submit_btn.prev('input[name="previous"]');
+        submit_btn.prop("disabled", true);
+        prev_btn.prop("disabled", true);
+        submit_btn.fadeTo(100, 0.4);
+        prev_btn.fadeTo(100, 0.4);
+        $('.lds-ripple').show();
+        postSurvey(data, $(this));
     });
 
     // Start Again Event
@@ -49,6 +59,7 @@ $(document).ready(function() {
         animating = true;
         current_fs = $(this).parent();
         next_fs = $(this).parent().next();
+        if ($(this).val() != 'Submit'){
         $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
         next_fs.show();
         current_fs.animate({
@@ -73,6 +84,7 @@ $(document).ready(function() {
             },
             easing: 'easeInOutExpo'
         });
+        }
     });
 
     // Previous Event
@@ -106,6 +118,49 @@ $(document).ready(function() {
             easing: 'easeInOutExpo'
         });
     });
+    
+    
+    var postSurvey = function (data, current_html) {
+        $.ajax({
+            url: "/client-survey",
+            type: "post",
+            data: data ,
+            success: function (response) {
+
+                current_fs = $('#submit').parent();
+                next_fs = $('#submit').parent().next();
+                next_fs.show();
+                current_fs.animate({
+                    opacity: 0
+                }, {
+                    step: function(now, mx) {
+                        scale = 1 - (1 - now) * 0.2;
+                        left = (now * 50) + "%";
+                        opacity = 1 - now;
+                        current_fs.css({
+                            'transform': 'scale(' + scale + ')'
+                        });
+                        next_fs.css({
+                            'left': left,
+                            'opacity': opacity
+                        });
+                    },
+                    duration: 800,
+                    complete: function() {
+                        current_fs.hide();
+                        animating = false;
+                    },
+                    easing: 'easeInOutExpo'
+                });
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(textStatus, errorThrown);
+            }
+
+
+        });
+    }
 
 
 });

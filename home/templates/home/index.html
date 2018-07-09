@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Client Survey</title>
+    <title>{{ title }} Survey</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
@@ -15,7 +15,7 @@
 <body>
 
 <div class="info">
-    <h1>Survey Portal</h1>
+    <h1>{{ title }} Survey Portal</h1>
     <span>
     By
     <a href="https://github.com/rizwanbutt314/">Rizwan Hameed</a>
@@ -40,15 +40,16 @@
 </div>
 
 <form class="steps" id="survey-form" novalidate="">
+    {% csrf_token %}
     <ul id="progressbar">
-        <li class="active">Client Information</li>
+        <li class="active">{{ title }} Information</li>
         <li>Stage 1</li>
         <li>Stage 2</li>
     </ul>
 
     <!-- USER INFORMATION FIELD SET -->
     <fieldset>
-        <h2 class="fs-title">Client Information</h2>
+        <h2 class="fs-title">{{ title }} Information</h2>
         <h3 class="fs-subtitle">We just need your name to begin survey</h3>
         <!-- Begin What's Your First Name Field -->
         <div class="hs_firstname field hs-form-field">
@@ -78,19 +79,19 @@
                 </div>
                 <div class="center-container">
                     <label class="radio inline">
-                        <input type="radio" name="cc" value="1" checked>
+                        <input type="radio" name="q1" value="1" checked>
                         <span></span>
                     </label>
                     <label class="radio inline">
-                        <input type="radio" name="cc" value="2">
+                        <input type="radio" name="q1" value="2">
                         <span></span>
                     </label>
                     <label class="radio inline">
-                        <input type="radio" name="cc" value="3">
+                        <input type="radio" name="q1" value="3">
                         <span></span>
                     </label>
                     <label class="radio inline">
-                        <input type="radio" name="cc" value="4">
+                        <input type="radio" name="q1" value="4">
                         <span></span>
                     </label>
                 </div>
@@ -111,19 +112,19 @@
                 </div>
                 <div class="center-container">
                     <label class="radio inline">
-                        <input type="radio" name="bs" value="1" checked>
+                        <input type="radio" name="q2" value="1" checked>
                         <span></span>
                     </label>
                     <label class="radio inline">
-                        <input type="radio" name="bs" value="2">
+                        <input type="radio" name="q2" value="2">
                         <span></span>
                     </label>
                     <label class="radio inline">
-                        <input type="radio" name="bs" value="3">
+                        <input type="radio" name="q2" value="3">
                         <span></span>
                     </label>
                     <label class="radio inline">
-                        <input type="radio" name="bs" value="4">
+                        <input type="radio" name="q2" value="4">
                         <span></span>
                     </label>
                 </div>
@@ -144,19 +145,19 @@
                 </div>
                 <div class="center-container">
                     <label class="radio inline">
-                        <input type="radio" name="fc" value="1" checked>
+                        <input type="radio" name="q3" value="1" checked>
                         <span></span>
                     </label>
                     <label class="radio inline">
-                        <input type="radio" name="fc" value="2">
+                        <input type="radio" name="q3" value="2">
                         <span></span>
                     </label>
                     <label class="radio inline">
-                        <input type="radio" name="fc" value="3">
+                        <input type="radio" name="q3" value="3">
                         <span></span>
                     </label>
                     <label class="radio inline">
-                        <input type="radio" name="fc" value="4">
+                        <input type="radio" name="q3" value="4">
                         <span></span>
                     </label>
                 </div>
@@ -177,19 +178,19 @@
                 </div>
                 <div class="center-container">
                     <label class="radio inline">
-                        <input type="radio" name="gd" value="1" checked>
+                        <input type="radio" name="q4" value="1" checked>
                         <span></span>
                     </label>
                     <label class="radio inline">
-                        <input type="radio" name="gd" value="2">
+                        <input type="radio" name="q4" value="2">
                         <span></span>
                     </label>
                     <label class="radio inline">
-                        <input type="radio" name="gd" value="3">
+                        <input type="radio" name="q4" value="3">
                         <span></span>
                     </label>
                     <label class="radio inline">
-                        <input type="radio" name="gd" value="4">
+                        <input type="radio" name="q4" value="4">
                         <span></span>
                     </label>
                 </div>
@@ -210,6 +211,11 @@
     <!-- Submit Stage -->
     <fieldset>
         <h2 class="fs-title">Submit Survey?</h2>
+        <div class="lds-ripple" style="display: none">
+            <div></div>
+            <div></div>
+            <span class="text">Submitting Survey...</span>
+        </div>
         <input type="button" data-page="5" name="previous" class="previous action-button" value="Previous" />
         <input id="submit" class="hs-button primary large action-button next" type="submit" value="Submit">
         <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3">What Is This?</div>

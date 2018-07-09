@@ -123,3 +123,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
+
+# Custom Settings
+CLIENT_URL = '/client-survey'
+AGENCY_URL = '/agency-survey'
