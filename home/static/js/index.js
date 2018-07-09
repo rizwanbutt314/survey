@@ -166,6 +166,7 @@ $(document).ready(function () {
 
                 var _type = response.type;
                 var response_elm = $('.response');
+                console.log(_type);
                 if (_type == 'client') {
                     var client_html = "";
                     $.each(response.data, function (index, obj) {
@@ -177,6 +178,9 @@ $(document).ready(function () {
                     });
                     if (client_html) {
                         response_elm.html(client_html);
+                    }
+                    else{
+                        response_elm.html('<h3 class="fs-subtitle" style="text-align: center">No Agencies Data Found!</h3>')
                     }
                 }
                 else if (_type = 'agency') {
