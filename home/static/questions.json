@@ -1,0 +1,114 @@
+{
+  "q1": [
+    "Ambitious",
+    "Motivated"
+  ],
+  "q2": [
+    "Book Smart",
+    "Street Smart"
+  ],
+  "q3": [
+    "City",
+    "Country"
+  ],
+  "q4": [
+    "Direct",
+    "Subtle"
+  ],
+  "q5": [
+    "Fashionable",
+    "Functional"
+  ],
+  "q6": [
+    "Fast",
+    "Thorough"
+  ],
+  "q7": [
+    "Field Guide",
+    "Explorer"
+  ],
+  "q8": [
+    "Formal",
+    "Casual"
+  ],
+  "q9": [
+    "Gut Centric",
+    "Head Centric"
+  ],
+  "q10": [
+    "Guitar",
+    "Drums"
+  ],
+  "q11": [
+    "Happy go lucky",
+    "Devil may care"
+  ],
+  "q12": [
+    "Home runs",
+    "Base Hits"
+  ],
+  "q13": [
+    "Host with the most",
+    "Life of the party"
+  ],
+  "q14": [
+    "Hunter",
+    "Gatherer"
+  ],
+  "q15": [
+    "Iconic",
+    "Famous"
+  ],
+  "q16": [
+    "Improvised",
+    "Rehearsed"
+  ],
+  "q17": [
+    "Inclusive",
+    "Exclusive"
+  ],
+  "q18": [
+    "Intelligent",
+    "Wise"
+  ],
+  "q19": [
+    "Jock",
+    "Nerd"
+  ],
+  "q20": [
+    "Left Brain",
+    "Right Brain"
+  ],
+  "q21": [
+    "Modern",
+    "Traditional"
+  ],
+  "q22": [
+    "A Player",
+    "Game changer"
+  ],
+  "q23": [
+    "Quality",
+    "Quantity"
+  ],
+  "q24": [
+    "Realist",
+    "Dreamer"
+  ],
+  "q25": [
+    "Renown",
+    "Best kept secret"
+  ],
+  "q26": [
+    "Sexy",
+    "Cool"
+  ],
+  "q27": [
+    "Sunshine",
+    "Moonshine"
+  ],
+  "q28": [
+    "Swagger",
+    "Strut "
+  ]
+}

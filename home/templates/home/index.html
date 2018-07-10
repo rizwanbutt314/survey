@@ -46,6 +46,8 @@
         <li class="active">{{ title }} Information</li>
         <li>Stage 1</li>
         <li>Stage 2</li>
+        <li>Stage 3</li>
+        <li>Stage 4</li>
     </ul>
 
     <!-- USER INFORMATION FIELD SET -->
@@ -67,149 +69,145 @@
         <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3"><i class="question-log fa fa-question-circle"></i> What Is This?</div>
     </fieldset>
 
-    <!-- Stage 1 -->
+    <!-- Stage 1 Start-->
     <fieldset>
         <h2 class="fs-title">Is your Agency more <br>this or that?</h2>
         <div class="content-container">
-            <!-- Begin Total Number of Donors in Year 1 Field -->
+            {% for quesiton in section_1%}
+            <!-- Begin Question Section -->
             <div class="form-item webform-component webform-component-textfield hs_total_number_of_donors_in_year_1 field hs-form-field" id="webform-component-acquisition--amount-1">
                 <div class="left-container">
                     <label class="radio inline">
-                        <p>City</p>
+                        <p>{{ quesiton.1.0 }}</p>
                     </label>
                 </div>
                 <div class="center-container">
                     <label class="radio inline">
-                        <input type="radio" name="q1" value="1" checked>
+                        <input type="radio" name="{{ quesiton.0 }}" value="1" checked>
                         <span></span>
                     </label>
                     <label class="radio inline">
-                        <input type="radio" name="q1" value="2">
+                        <input type="radio" name="{{ quesiton.0 }}" value="2">
                         <span></span>
                     </label>
                     <label class="radio inline">
-                        <input type="radio" name="q1" value="3">
+                        <input type="radio" name="{{ quesiton.0 }}" value="3">
                         <span></span>
                     </label>
                     <label class="radio inline">
-                        <input type="radio" name="q1" value="4">
+                        <input type="radio" name="{{ quesiton.0 }}" value="4">
                         <span></span>
                     </label>
                 </div>
                 <div class="right-container">
                     <label class="radio inline">
-                        <p>Country</p>
+                        <p>{{ quesiton.1.1 }}</p>
                     </label>
                 </div>
 
             </div>
-            <!-- End Total Number of Donors in Year 1 Field -->
-            <!-- Begin Total Number of Donors in Year 1 Field -->
-            <div class="form-item webform-component webform-component-textfield hs_total_number_of_donors_in_year_1 field hs-form-field" id="webform-component-acquisition--amount-1">
-                <div class="left-container">
-                    <label class="radio inline">
-                        <p>Book Smart</p>
-                    </label>
-                </div>
-                <div class="center-container">
-                    <label class="radio inline">
-                        <input type="radio" name="q2" value="1" checked>
-                        <span></span>
-                    </label>
-                    <label class="radio inline">
-                        <input type="radio" name="q2" value="2">
-                        <span></span>
-                    </label>
-                    <label class="radio inline">
-                        <input type="radio" name="q2" value="3">
-                        <span></span>
-                    </label>
-                    <label class="radio inline">
-                        <input type="radio" name="q2" value="4">
-                        <span></span>
-                    </label>
-                </div>
-                <div class="right-container">
-                    <label class="radio inline">
-                        <p>Street Smart</p>
-                    </label>
-                </div>
-
-            </div>
-            <!-- End Total Number of Donors in Year 1 Field -->
-            <!-- Begin Total Number of Donors in Year 1 Field -->
-            <div class="form-item webform-component webform-component-textfield hs_total_number_of_donors_in_year_1 field hs-form-field" id="webform-component-acquisition--amount-1">
-                <div class="left-container">
-                    <label class="radio inline">
-                        <p>Formal</p>
-                    </label>
-                </div>
-                <div class="center-container">
-                    <label class="radio inline">
-                        <input type="radio" name="q3" value="1" checked>
-                        <span></span>
-                    </label>
-                    <label class="radio inline">
-                        <input type="radio" name="q3" value="2">
-                        <span></span>
-                    </label>
-                    <label class="radio inline">
-                        <input type="radio" name="q3" value="3">
-                        <span></span>
-                    </label>
-                    <label class="radio inline">
-                        <input type="radio" name="q3" value="4">
-                        <span></span>
-                    </label>
-                </div>
-                <div class="right-container">
-                    <label class="radio inline">
-                        <p>Casual</p>
-                    </label>
-                </div>
-
-            </div>
-            <!-- End Total Number of Donors in Year 1 Field -->
-            <!-- Begin Total Number of Donors in Year 1 Field -->
-            <div class="form-item webform-component webform-component-textfield hs_total_number_of_donors_in_year_1 field hs-form-field" id="webform-component-acquisition--amount-1">
-                <div class="left-container">
-                    <label class="radio inline">
-                        <p>Guitar</p>
-                    </label>
-                </div>
-                <div class="center-container">
-                    <label class="radio inline">
-                        <input type="radio" name="q4" value="1" checked>
-                        <span></span>
-                    </label>
-                    <label class="radio inline">
-                        <input type="radio" name="q4" value="2">
-                        <span></span>
-                    </label>
-                    <label class="radio inline">
-                        <input type="radio" name="q4" value="3">
-                        <span></span>
-                    </label>
-                    <label class="radio inline">
-                        <input type="radio" name="q4" value="4">
-                        <span></span>
-                    </label>
-                </div>
-                <div class="right-container">
-                    <label class="radio inline">
-                        <p>Drums</p>
-                    </label>
-                </div>
-
-            </div>
-            <!-- End Total Number of Donors in Year 1 Field -->
+            <!-- End Question Section -->
+            {% endfor %}
         </div>
         <input type="button" data-page="2" name="previous" class="previous action-button" value="Previous" />
         <input type="button" data-page="2" name="next" class="next action-button" value="Next" />
         <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3">What Is This?</div>
     </fieldset>
+    <!-- Stage 1 End-->
 
-    <!-- Submit Stage -->
+    <!-- Stage 2 Start-->
+    <fieldset>
+        <h2 class="fs-title">Is your Agency more <br>this or that?</h2>
+        <div class="content-container">
+            {% for quesiton in section_2%}
+            <!-- Begin Question Section -->
+            <div class="form-item webform-component webform-component-textfield hs_total_number_of_donors_in_year_1 field hs-form-field" id="webform-component-acquisition--amount-1">
+                <div class="left-container">
+                    <label class="radio inline">
+                        <p>{{ quesiton.1.0 }}</p>
+                    </label>
+                </div>
+                <div class="center-container">
+                    <label class="radio inline">
+                        <input type="radio" name="{{ quesiton.0 }}" value="1" checked>
+                        <span></span>
+                    </label>
+                    <label class="radio inline">
+                        <input type="radio" name="{{ quesiton.0 }}" value="2">
+                        <span></span>
+                    </label>
+                    <label class="radio inline">
+                        <input type="radio" name="{{ quesiton.0 }}" value="3">
+                        <span></span>
+                    </label>
+                    <label class="radio inline">
+                        <input type="radio" name="{{ quesiton.0 }}" value="4">
+                        <span></span>
+                    </label>
+                </div>
+                <div class="right-container">
+                    <label class="radio inline">
+                        <p>{{ quesiton.1.1 }}</p>
+                    </label>
+                </div>
+
+            </div>
+            <!-- End Question Section -->
+            {% endfor %}
+        </div>
+        <input type="button" data-page="2" name="previous" class="previous action-button" value="Previous" />
+        <input type="button" data-page="2" name="next" class="next action-button" value="Next" />
+        <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3">What Is This?</div>
+    </fieldset>
+    <!-- Stage 2 End-->
+
+    <!-- Stage 3 Start-->
+    <fieldset>
+        <h2 class="fs-title">Is your Agency more <br>this or that?</h2>
+        <div class="content-container">
+            {% for quesiton in section_3%}
+            <!-- Begin Question Section -->
+            <div class="form-item webform-component webform-component-textfield hs_total_number_of_donors_in_year_1 field hs-form-field" id="webform-component-acquisition--amount-1">
+                <div class="left-container">
+                    <label class="radio inline">
+                        <p>{{ quesiton.1.0 }}</p>
+                    </label>
+                </div>
+                <div class="center-container">
+                    <label class="radio inline">
+                        <input type="radio" name="{{ quesiton.0 }}" value="1" checked>
+                        <span></span>
+                    </label>
+                    <label class="radio inline">
+                        <input type="radio" name="{{ quesiton.0 }}" value="2">
+                        <span></span>
+                    </label>
+                    <label class="radio inline">
+                        <input type="radio" name="{{ quesiton.0 }}" value="3">
+                        <span></span>
+                    </label>
+                    <label class="radio inline">
+                        <input type="radio" name="{{ quesiton.0 }}" value="4">
+                        <span></span>
+                    </label>
+                </div>
+                <div class="right-container">
+                    <label class="radio inline">
+                        <p>{{ quesiton.1.1 }}</p>
+                    </label>
+                </div>
+
+            </div>
+            <!-- End Question Section -->
+            {% endfor %}
+        </div>
+        <input type="button" data-page="2" name="previous" class="previous action-button" value="Previous" />
+        <input type="button" data-page="2" name="next" class="next action-button" value="Next" />
+        <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3">What Is This?</div>
+    </fieldset>
+    <!-- Stage 3 End-->
+
+    <!-- Submit Stage Start-->
     <fieldset>
         <h2 class="fs-title">Submit Survey?</h2>
         <div class="lds-ripple" style="display: none">
@@ -221,7 +219,9 @@
         <input id="submit" class="hs-button primary large action-button next" type="submit" value="Submit">
         <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3">What Is This?</div>
     </fieldset>
+    <!-- Submit Stage End-->
 
+    <!-- Status Stage Start-->
     <fieldset>
         <h2 class="fs-title">Survey Status</h2>
         <div class="response">
@@ -235,6 +235,7 @@
         <input type="button" data-page="1" name="again" class="again action-button" value="Start Again" />
         <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3">What Is This?</div>
     </fieldset>
+    <!-- Status Stage End-->
 
     <!--JS Files Start-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

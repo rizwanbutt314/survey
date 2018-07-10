@@ -127,5 +127,5 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 # Custom Settings
 CLIENT_URL = '/client-survey'
 AGENCY_URL = '/agency-survey'
-QUESTIONS_COUNT = 4
-QUESTION_START_FORMULA = 12
+QUESTIONS_COUNT = 28
+QUESTION_START_FORMULA = 84

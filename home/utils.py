@@ -2,8 +2,10 @@ from home.models import AgencySurvey
 from survey.settings import QUESTIONS_COUNT, QUESTION_START_FORMULA
 
 import json
+import os
 
 
+# Compare client survey with Agencies Survey
 def compare_client_questions(client_data):
     mapped_data = map_survey_data(client_data)
     compared_data = list()
@@ -22,6 +24,7 @@ def compare_client_questions(client_data):
     return compared_data
 
 
+# Calculate the comaprison score of client survey with an agency
 def calculate_comparison_score(client_data, agency_data):
     client_diff = list()
     for key, value in client_data.items():
@@ -38,6 +41,7 @@ def calculate_comparison_score(client_data, agency_data):
     return float(score)
 
 
+# Map post data with desired json
 def map_survey_data(post_data):
     mapped_data = dict()
     for q_num in range(1, QUESTIONS_COUNT + 1):
@@ -47,9 +51,21 @@ def map_survey_data(post_data):
     return mapped_data
 
 
+# Save agency survey data to database
 def save_agency_survey(data):
     mapped_data = map_survey_data(data)
     agency_data = AgencySurvey.objects.create(
         name=data.get('name', 'No Name'),
         survey=json.dumps(mapped_data)
     )
+
+
+# Get questions data
+def get_questions():
+    questions_file_path = os.getcwd()+"/home/static/questions.json"
+    questions_data = dict()
+    with open(questions_file_path, 'r') as _file:
+        questions_data = json.load(_file)
+
+    listed_questions_data = list(questions_data.items())
+    return listed_questions_data
