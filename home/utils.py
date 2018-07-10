@@ -10,7 +10,7 @@ def compare_client_questions(client_data):
     mapped_data = map_survey_data(client_data)
     compared_data = list()
 
-    for agency in AgencySurvey.objects.all()[:10]:
+    for agency in AgencySurvey.objects.all():
         agency_data = json.loads(agency.survey)
 
         score = calculate_comparison_score(mapped_data, agency_data)
@@ -21,7 +21,7 @@ def compare_client_questions(client_data):
         })
     # Sorting List of objects using score value
     compared_data = sorted(compared_data, key=lambda x: x['score'], reverse=True)
-    return compared_data
+    return compared_data[:10]
 
 
 # Calculate the comaprison score of client survey with an agency
