@@ -28,6 +28,8 @@ class IndexView(View):
         if request.path == CLIENT_URL:
             template_context_data = {
                 'title': 'Client',
+                'heading_1': 'Would you describe yourself as more ',
+                'heading_2': 'this or that?',
                 'section_1': section_1,
                 'section_2': section_2,
                 'section_3': section_3,
@@ -35,6 +37,8 @@ class IndexView(View):
         elif request.path == AGENCY_URL:
             template_context_data = {
                 'title': 'Agency',
+                'heading_1': 'Is your Agency more ',
+                'heading_2': 'this or that?',
                 'section_1': section_1,
                 'section_2': section_2,
                 'section_3': section_3,
