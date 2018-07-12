@@ -1,0 +1,558 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Survey Portal</title>
+    <!--<link href="{% static 'images/favicon.ico' %}" rel="icon" type="image/x-icon" />-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <style>
+        /*basic reset*/
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /*html {*/
+            /*height: 100%;*/
+            /*!*Image only BG fallback*!*/
+            /*background: #e9e9e9;*/
+        /*}*/
+
+        /*body {*/
+            /*font-family: montserrat, arial, verdana;*/
+            /*width: 100%;*/
+            /*overflow-x: hidden;*/
+            /*background: #e9e9e9;*/
+        /*}*/
+
+        /*form styles*/
+        .steps {
+            width: 675px;
+            margin: 50px auto;
+            position: relative;
+        }
+
+        .steps fieldset {
+            background: white;
+            border: 0 none;
+            border-radius: 3px;
+            box-shadow: 0 17px 41px -21px rgb(0, 0, 0);
+            padding: 20px 30px;
+            border-top: 9px solid #7B1FA2;
+            box-sizing: border-box;
+            width: 80%;
+            margin: 0 10%;
+
+            /*stacking fieldsets above each other*/
+            position: absolute;
+        }
+
+        /*Hide all except first fieldset*/
+        .steps fieldset:not(:first-of-type) {
+            display: none;
+        }
+
+        /*inputs*/
+        .steps label {
+            color: #333333;
+            text-align: left !important;
+            font-size: 15px;
+            font-weight: 200;
+            padding-bottom: 7px;
+            padding-top: 12px;
+            display: inline-block;
+        }
+
+        .steps input, .steps textarea {
+            outline: none;
+            display: block;
+            width: 100%;
+            margin: 0 0 20px;
+            padding: 10px 15px;
+            border: 1px solid #d9d9d9;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            color: #837E7E;
+            font-family: "Roboto";
+            -webkti-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            font-size: 14px;
+            font-wieght: 400;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-transition: all 0.3s linear 0s;
+            -moz-transition: all 0.3s linear 0s;
+            -ms-transition: all 0.3s linear 0s;
+            -o-transition: all 0.3s linear 0s;
+            transition: all 0.3s linear 0s;
+        }
+
+        .steps input:focus, .steps textarea:focus {
+            color: #333333;
+            border: 1px solid #7B1FA2;
+        }
+
+        /*buttons*/
+        .steps .action-button, .action-button {
+            width: 100px !important;
+            background: #7B1FA2;
+            font-weight: bold;
+            color: white;
+            border: 0 none;
+            border-radius: 1px;
+            cursor: pointer;
+            padding: 10px 5px;
+            margin: 10px auto;
+            -webkit-transition: all 0.3s linear 0s;
+            -moz-transition: all 0.3s linear 0s;
+            -ms-transition: all 0.3s linear 0s;
+            -o-transition: all 0.3s linear 0s;
+            transition: all 0.3s linear 0s;
+            display: block;
+        }
+
+        .steps .next, .steps .submit {
+            float: right;
+        }
+
+        .steps .previous {
+            float: left;
+        }
+
+        .steps .action-button:hover, .steps .action-button:focus, .action-button:hover, .action-button:focus {
+            background: #9F2AD0;;
+        }
+
+        .steps .explanation {
+            display: block;
+            clear: both;
+            width: 540px;
+            background: #f2f2f2;
+            position: relative;
+            margin-left: -30px;
+            padding: 22px 0px;
+            margin-bottom: -10px;
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+            top: 10px;
+            text-align: center;
+            color: #333333;
+            font-size: 12px;
+            font-weight: 200;
+            cursor: pointer;
+        }
+
+        /*headings*/
+        .fs-title {
+            text-transform: uppercase;
+            margin: 0 0 5px;
+            line-height: 1;
+            color: #7B1FA2;
+            font-size: 18px;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        .progress {
+            display: -ms-flexbox;
+            display: flex;
+            height: 1rem;
+            overflow: hidden;
+            font-size: .75rem;
+            background-color: #e9ecef;
+            border-radius: .25rem;
+        }
+
+        /* my modal */
+
+        .modal p {
+            font-size: 15px;
+            font-weight: 100;
+            font-family: sans-serif;
+            color: #3C3B3B;
+            line-height: 21px;
+        }
+
+        .lt-ie9 .modal {
+            top: 0;
+            margin-left: -315px;
+        }
+
+        .modal-show .modal-overlay {
+            visibility: visible;
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+            opacity: 0.6;
+            -moz-transition: opacity 0.5s;
+            -o-transition: opacity 0.5s;
+            -webkit-transition: opacity 0.5s;
+            transition: opacity 0.5s;
+        }
+
+        /*slide*/
+        .modal[data-modal-effect|=slide] .modal-content {
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+            opacity: 0;
+            -moz-transition: all 0.5s 0;
+            -o-transition: all 0.5s 0;
+            -webkit-transition: all 0.5s 0;
+            transition: all 0.5s 0;
+        }
+
+        .modal[data-modal-effect|=slide].modal-show .modal-content {
+            filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+            opacity: 1;
+            -moz-transition: all 0.5s 0.1s;
+            -o-transition: all 0.5s 0.1s;
+            -webkit-transition: all 0.5s;
+            -webkit-transition-delay: 0.1s;
+            transition: all 0.5s 0.1s;
+        }
+
+        .modal[data-modal-effect=slide-top] .modal-content {
+            -moz-transform: translateY(-300%);
+            -ms-transform: translateY(-300%);
+            -webkit-transform: translateY(-300%);
+            transform: translateY(-300%);
+        }
+
+        .modal[data-modal-effect=slide-top].modal-show .modal-content {
+            -moz-transform: translateY(0);
+            -ms-transform: translateY(0);
+            -webkit-transform: translateY(0);
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE */
+
+        /* moves error logs in tablet/smaller screens */
+
+        @media (max-width: 1000px) {
+
+            /*brings inputs down in size */
+            .steps input, .steps textarea {
+                outline: none;
+                display: block;
+                width: 100% !important;
+            }
+
+        }
+
+        @media (max-width: 675px) {
+            /*mobile phone: uncollapse all fields: remove progress bar*/
+            .steps {
+                width: 100%;
+                margin: 50px auto;
+                position: relative;
+            }
+
+            /*show hidden fieldsets */
+            .steps fieldset:not(:first-of-type) {
+                display: block;
+            }
+
+            .steps fieldset {
+                position: relative;
+                width: 100%;
+                margin: 0 auto;
+                margin-top: 45px;
+            }
+
+            .steps .next, .steps .previous {
+                display: none;
+            }
+
+            .steps .explanation {
+                display: none;
+            }
+
+            .steps .submit {
+                float: right;
+                margin: 28px auto 10px;
+                width: 100% !important;
+            }
+
+        }
+
+        /* Info */
+        .info {
+            width: 300px;
+            margin: 35px auto;
+            text-align: center;
+            font-family: 'roboto', sans-serif;
+        }
+
+        .info h1 {
+            margin: 0;
+            padding: 0;
+            font-size: 28px;
+            font-weight: 400;
+            color: #333333;
+            padding-bottom: 5px;
+
+        }
+
+        .info span {
+            color: #666666;
+            font-size: 13px;
+            margin-top: 20px;
+        }
+
+        .info span a {
+            color: #666666;
+            text-decoration: none;
+        }
+
+        .info span .fa {
+            color: rgb(226, 168, 16);
+            font-size: 19px;
+            position: relative;
+            left: -2px;
+        }
+
+        .info span .spoilers {
+            color: #999999;
+            margin-top: 5px;
+            font-size: 10px;
+        }
+
+        .inline + .inline {
+            margin-left: 46px;
+        }
+
+        .radio span {
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .radio span:after {
+            content: '';
+            width: 15px;
+            height: 15px;
+            border: 3px solid;
+            position: absolute;
+            left: 0;
+            top: 1px;
+            border-radius: 100%;
+            -ms-border-radius: 100%;
+            -moz-border-radius: 100%;
+            -webkit-border-radius: 100%;
+            box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+
+        .radio input[type="radio"] {
+            cursor: pointer;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"
+        }
+
+        .radio input[type="radio"]:checked + span {
+            color: #0B8;
+        }
+
+        .radio input[type="radio"]:checked + span:before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            position: absolute;
+            background: #0B8;
+            left: 5px;
+            top: 6px;
+            border-radius: 100%;
+            -ms-border-radius: 100%;
+            -moz-border-radius: 100%;
+            -webkit-border-radius: 100%;
+        }
+
+        .lds-ripple div {
+            position: absolute;
+            border: 4px solid #7B1FA2;
+            opacity: 1;
+            border-radius: 50%;
+            animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+        }
+
+        .lds-ripple .text {
+            display: block;
+            margin-top: 23px;
+        }
+
+        .lds-ripple div:nth-child(2) {
+            animation-delay: -0.5s;
+        }
+
+        @keyframes lds-ripple {
+            0% {
+                top: 28px;
+                left: 28px;
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            100% {
+                top: -1px;
+                left: -1px;
+                width: 58px;
+                height: 58px;
+                opacity: 0;
+            }
+        }
+
+        .button {
+            display: block;
+            width: 200px;
+            /*height: 50px;*/
+            background: #7B1FA2;
+            padding: 14px;
+            text-align: center;
+            /* border-radius: 5px; */
+            color: white !important;
+            font-weight: bold;
+            margin: 0 auto;
+            margin-bottom: 20px;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .wrapper {
+            margin: 0 auto;
+            padding: 40px;
+            max-width: 800px;
+        }
+
+        .table {
+            margin: 0 0 0 0;
+            width: 100%;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            display: table;
+        }
+        @media screen and (max-width: 580px) {
+            .table {
+                display: block;
+            }
+        }
+
+        .row {
+            display: table-row;
+            background: #f6f6f6;
+        }
+        .row:nth-of-type(odd) {
+            background: #e9e9e9;
+        }
+        .row.header {
+            font-weight: 900;
+            color: #ffffff;
+            background: #7B1FA2;
+        }
+        @media screen and (max-width: 580px) {
+            .row {
+                padding: 14px 0 7px;
+                display: block;
+            }
+            .row.header {
+                padding: 0;
+                height: 6px;
+            }
+            .row.header .cell {
+                display: none;
+            }
+            .row .cell {
+                margin-bottom: 10px;
+            }
+            .row .cell:before {
+                margin-bottom: 3px;
+                content: attr(data-title);
+                min-width: 98px;
+                font-size: 10px;
+                line-height: 10px;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: #969696;
+                display: block;
+            }
+        }
+
+        .cell {
+            padding: 6px 12px;
+            display: table-cell;
+        }
+        @media screen and (max-width: 580px) {
+            .cell {
+                padding: 2px 16px;
+                display: block;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body style="background: #e9e9e9; padding-top: 20px; padding-bottom: 20px;">
+
+<div class="info">
+    <h1>Survey Portal</h1>
+</div>
+
+
+<form class="steps" id="survey-form" novalidate="">
+    <!-- Status Stage Start-->
+    <fieldset>
+        <h2 class="fs-title">Survey Status</h2>
+        <div class="wrapper">
+            <div style="font-weight: bold;">
+                Client: <span>{{ name }}</span>
+            </div>
+            {% if data %}
+                <div class="table">
+
+                <div class="row header">
+                    <div class="cell">
+                        Agency Name
+                    </div>
+                    <div class="cell">
+                        Comparison Percentage
+                    </div>
+                </div>
+                {% for agency in data %}
+                    <div class="row">
+                        <div class="cell" data-title="Name">
+                            {{ agency.name }}
+                        </div>
+                        <div class="cell" data-title="Age">
+                            {{ agency.score }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% else %}
+                <div style="text-align: center;color:red;">
+                <h4>No Agencies Data Found !</h4>
+            </div>
+            {% endif %}
+        </div>
+        <a class="button" href="https://survey-portal.herokuapp.com/" target="_blank">Visit Us</a>
+        <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3">Copyright 2018 Survey Portal</div>
+    </fieldset>
+    <!-- Status Stage End-->
+</form>
+
+</body>
+
+</html>

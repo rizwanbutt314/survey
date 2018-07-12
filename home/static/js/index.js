@@ -166,7 +166,6 @@ $(document).ready(function () {
 
                 var _type = response.type;
                 var response_elm = $('.response');
-                console.log(_type);
                 if (_type == 'client') {
                     var client_html = "";
                     $.each(response.data, function (index, obj) {
