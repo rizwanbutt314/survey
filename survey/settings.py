@@ -132,8 +132,8 @@ QUESTION_START_FORMULA = 84
 
 #EMAIL Settings
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USERNAME = 'testemailstats05@gmail.com'
+EMAIL_USERNAME = 'sample@gmail.com'
 EMAIL_PASSWORD = 'admin123b'
 EMAIL_PORT = 587
-EMAIL_TO = ['rbutt@sparkcognition.com']
+EMAIL_TO = ['rizwanbutt314@gmail.com']
 EMAIL_SUBJECT = 'Sruvey Status'
