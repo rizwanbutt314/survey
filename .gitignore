@@ -1,6 +1,6 @@
 # Files
 *.pyc
-survey/db.sqlite3
+#survey/db.sqlite3
 
 
 # Folders

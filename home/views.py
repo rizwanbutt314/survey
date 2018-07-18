@@ -64,14 +64,20 @@ class IndexView(View):
         name = post_data.get('name', 'No Name')
         responseData = dict()
         time.sleep(2)
+        # Client Section
         if request.path == CLIENT_URL:
             comparison_data = utils.compare_client_questions(post_data)
+            # Save Client Survey Data
+            utils.save_client_survey(post_data)
             responseData = {'success': True, 'type': 'client', 'data': comparison_data}
             try:
+                # Send comparison stats to admin
                 send_stats_email(name, comparison_data)
             except:
                 print("Exception while sending an email.")
+        # Agency Section
         elif request.path == AGENCY_URL:
+            # Save Agency Survey Data
             utils.save_agency_survey(post_data)
             responseData = {'success': True, 'type': 'agency', 'detail': 'Survey Submitted'}
 

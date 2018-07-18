@@ -1,4 +1,4 @@
-from home.models import AgencySurvey
+from home.models import AgencySurvey, ClientSurvey
 from survey.settings import QUESTIONS_COUNT, QUESTION_START_FORMULA
 
 import json
@@ -59,6 +59,13 @@ def save_agency_survey(data):
         survey=json.dumps(mapped_data)
     )
 
+# Save Client survey data to database
+def save_client_survey(data):
+    mapped_data = map_survey_data(data)
+    client_data = ClientSurvey.objects.create(
+        name=data.get('name', 'No Name'),
+        survey=json.dumps(mapped_data)
+    )
 
 # Get questions data
 def get_questions():
