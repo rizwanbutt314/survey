@@ -1,11 +1,16 @@
 import json
 import time
+import os
+from email.mime.text import MIMEText
+from email.mime.application import MIMEApplication
+from email.mime.multipart import MIMEMultipart
+import smtplib
 
 from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponse
 # from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
+# from django.utils.decorators import method_decorator
 from django.core.mail import send_mail, get_connection
 from django.template.loader import get_template
 
@@ -74,11 +79,27 @@ class IndexView(View):
                 # Send comparison stats to admin
                 send_stats_email(name, comparison_data)
             except:
-                print("Exception while sending an email.")
+                print("Exception while sending stats email.")
         # Agency Section
         elif request.path == AGENCY_URL:
             # Save Agency Survey Data
             utils.save_agency_survey(post_data)
+
+            # Generate Temporarily agencies json file
+            temp_agency_data_file = utils.generate_agency_model_json()
+
+            try:
+                # Send agencies json and quesitons files in email
+                send_agency_data_email(temp_agency_data_file)
+            except Exception as err:
+                print("Exception while sending agency data email.")
+
+            # Removing Temporarily create agencies data json file
+            try:
+                os.remove(temp_agency_data_file)
+            except:
+                pass
+            
             responseData = {'success': True, 'type': 'agency', 'detail': 'Survey Submitted'}
 
         dumpData = json.dumps(responseData)
@@ -106,3 +127,36 @@ def send_stats_email(name, comparison_data):
               EMAIL_TO,
               connection=connection,
               html_message=c_html)
+
+
+def send_agency_data_email(filename):
+    questions_file_path = os.getcwd() + "/home/static/questions.json"
+
+    msg = MIMEMultipart()
+    msg['Subject'] = 'Agencies Data'
+    msg['From'] = EMAIL_USERNAME
+    msg['To'] = ','.join(EMAIL_TO)
+
+    msg.preamble = 'Multipart massage.\n'
+
+    part = MIMEText("Hi, please find the attached agencies and questions files")
+    msg.attach(part)
+
+    # Attaching Agencies Data file
+    agencies_file = MIMEApplication(open(filename, "rb").read())
+    agencies_file.add_header('Content-Disposition', 'attachment', filename='agencies_data.json')
+
+    # Attaching Questions Data file
+    questions_file = MIMEApplication(open(questions_file_path, "rb").read())
+    questions_file.add_header('Content-Disposition', 'attachment', filename='questions_data.json')
+
+    msg.attach(agencies_file)
+    msg.attach(questions_file)
+
+    smtp_server = "{0}:{1}".format(EMAIL_HOST, EMAIL_PORT)
+    server = smtplib.SMTP(smtp_server)
+    server.ehlo()
+    server.starttls()
+    server.login(EMAIL_USERNAME, EMAIL_PASSWORD)
+
+    server.sendmail(msg['From'], EMAIL_TO, msg.as_string())
