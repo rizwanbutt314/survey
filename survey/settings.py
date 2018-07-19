@@ -132,8 +132,8 @@ QUESTION_START_FORMULA = 84
 
 #EMAIL Settings
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USERNAME = 'sample@gmail.com'
-EMAIL_PASSWORD = 'admin123b'
+EMAIL_USERNAME = 'test8bitsolz123@gmail.com'
+EMAIL_PASSWORD = 'test12345solz'
 EMAIL_PORT = 587
 EMAIL_TO = ['rizwanbutt314@gmail.com', 'calling.card.survey@gmail.com']
 EMAIL_SUBJECT = 'Sruvey Status'
