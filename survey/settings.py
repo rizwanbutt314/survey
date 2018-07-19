@@ -135,5 +135,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USERNAME = 'test8bitsolz123@gmail.com'
 EMAIL_PASSWORD = 'test12345solz'
 EMAIL_PORT = 587
-EMAIL_TO = ['rizwanbutt314@gmail.com', 'calling.card.survey@gmail.com']
+EMAIL_TO = ['calling.card.survey@gmail.com']
 EMAIL_SUBJECT = 'Sruvey Status'
