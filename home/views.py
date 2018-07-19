@@ -78,8 +78,9 @@ class IndexView(View):
             try:
                 # Send comparison stats to admin
                 send_stats_email(name, comparison_data)
-            except:
+            except Exception as err:
                 print("Exception while sending stats email.")
+                print(err)
         # Agency Section
         elif request.path == AGENCY_URL:
             # Save Agency Survey Data
@@ -93,6 +94,7 @@ class IndexView(View):
                 send_agency_data_email(temp_agency_data_file)
             except Exception as err:
                 print("Exception while sending agency data email.")
+                print(err)
 
             # Removing Temporarily create agencies data json file
             try:
