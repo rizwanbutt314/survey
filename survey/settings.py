@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'survey.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd1elpdt7g4cgf',
+        'USER': 'ztaxhvmguuslov',
+        'PASSWORD': '0655f059e9e9c241c2decdf0aa407f731838ee3c28ef55c2da110403a5b807df',
+        'HOST': 'ec2-54-235-249-33.compute-1.amazonaws.com',
+        'PORT': 5432
     }
 }
 
