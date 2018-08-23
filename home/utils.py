@@ -59,6 +59,7 @@ def save_agency_survey(data):
         survey=json.dumps(mapped_data)
     )
 
+
 # Save Client survey data to database
 def save_client_survey(data):
     mapped_data = map_survey_data(data)
@@ -67,20 +68,22 @@ def save_client_survey(data):
         survey=json.dumps(mapped_data)
     )
 
-#Generate Agency Model JSON
+
+# Generate Agency Model JSON
 def generate_agency_model_json():
     agencies_data = AgencySurvey.objects.all().values()
     agencies_data = list(agencies_data)
 
-    temp_agency_data_file = os.getcwd()+"/home/static/temp_agency_data.json"
+    temp_agency_data_file = os.getcwd() + "/home/static/temp_agency_data.json"
     with open(temp_agency_data_file, 'w') as outfile:
         json.dump(agencies_data, outfile)
 
     return temp_agency_data_file
 
+
 # Get questions data
 def get_questions():
-    questions_file_path = os.getcwd()+"/home/static/questions.json"
+    questions_file_path = os.getcwd() + "/home/static/questions.json"
     questions_data = dict()
     with open(questions_file_path, 'r') as _file:
         questions_data = json.load(_file)

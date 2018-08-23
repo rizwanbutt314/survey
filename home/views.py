@@ -101,7 +101,7 @@ class IndexView(View):
                 os.remove(temp_agency_data_file)
             except:
                 pass
-            
+
             responseData = {'success': True, 'type': 'agency', 'detail': 'Survey Submitted'}
 
         dumpData = json.dumps(responseData)
