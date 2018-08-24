@@ -367,11 +367,11 @@ body {
 /*}*/
 
 .left-container{
-    width: 20%;
+    width: 22%;
     display: inline-block;
 }
 .right-container{
-    width: 20%;
+    width: 22%;
     display: inline-block;
     float: right;
 }
